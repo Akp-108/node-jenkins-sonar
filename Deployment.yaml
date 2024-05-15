@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: express-app
-        image: atulpandey108/node-jenkins:v1 # Replace with your Docker image
+        image: atulpandey108/node-sonar-gke:demo1 # Replace with your Docker image
         ports:
         - containerPort: 3111 # Port your Express app is listening on
 
