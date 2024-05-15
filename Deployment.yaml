@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: express-app
+spec:
+  replicas: 1 # Number of desired pods
+  selector:
+    matchLabels:
+      app: express-app
+  template:
+    metadata:
+      labels:
+        app: express-app
+    spec:
+      containers:
+      - name: express-app
+        image: atulpandey108/node-app-jenkins:demo1 # Replace with your Docker image
+        ports:
+        - containerPort: 3111 # Port your Express app is listening on
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: express-service
+spec:
+  selector:
+    app: express-app
+  ports:
+    - protocol: TCP
+      port: 80 # Port to expose on the service
+      targetPort: 3111 # Port your Express app is listening on
+  type: LoadBalancer # Expose the service outside the cluster
+
+
